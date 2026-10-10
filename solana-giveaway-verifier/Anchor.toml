@@ -6,11 +6,11 @@ skip_local_validator = true
 resolution = true
 skip-lint = false
 
-[programs.localnet]
+[programs.devnet]
 solana_giveaway_verifier = "4jeVmPQfu7r4RvSoPRdR8AGfToAQk8DHPFz1LsnZuKPm"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
