@@ -1,0 +1,481 @@
+{
+  "address": "4jeVmPQfu7r4RvSoPRdR8AGfToAQk8DHPFz1LsnZuKPm",
+  "metadata": {
+    "name": "solana_giveaway_verifier",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "cancel_and_refund",
+      "discriminator": [
+        86,
+        34,
+        75,
+        82,
+        239,
+        186,
+        2,
+        228
+      ],
+      "accounts": [
+        {
+          "name": "giveaway",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  105,
+                  118,
+                  101,
+                  97,
+                  119,
+                  97,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "giveaway.giveaway_id",
+                "account": "Giveaway"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "giveaway"
+              }
+            ]
+          }
+        },
+        {
+          "name": "organizer",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_and_fund",
+      "discriminator": [
+        81,
+        241,
+        83,
+        179,
+        19,
+        203,
+        167,
+        64
+      ],
+      "accounts": [
+        {
+          "name": "organizer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "giveaway",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  105,
+                  118,
+                  101,
+                  97,
+                  119,
+                  97,
+                  121
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "giveaway_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "giveaway"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "giveaway_id",
+          "type": "u64"
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "prize_lamports",
+          "type": "u64"
+        },
+        {
+          "name": "end_at",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "declare_winner",
+      "discriminator": [
+        140,
+        135,
+        197,
+        50,
+        9,
+        23,
+        4,
+        80
+      ],
+      "accounts": [
+        {
+          "name": "organizer",
+          "signer": true,
+          "relations": [
+            "giveaway"
+          ]
+        },
+        {
+          "name": "giveaway",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  105,
+                  118,
+                  101,
+                  97,
+                  119,
+                  97,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "giveaway.giveaway_id",
+                "account": "Giveaway"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "winner",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "pay_winner",
+      "discriminator": [
+        95,
+        54,
+        215,
+        39,
+        87,
+        139,
+        215,
+        225
+      ],
+      "accounts": [
+        {
+          "name": "giveaway",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  105,
+                  118,
+                  101,
+                  97,
+                  119,
+                  97,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "giveaway.giveaway_id",
+                "account": "Giveaway"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "giveaway"
+              }
+            ]
+          }
+        },
+        {
+          "name": "winner",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Giveaway",
+      "discriminator": [
+        47,
+        139,
+        46,
+        45,
+        143,
+        147,
+        50,
+        181
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidPrize",
+      "msg": "Prize must be greater than zero"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidEndTime",
+      "msg": "The end time must be in the future"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidTitle",
+      "msg": "Title must not be empty and must fit within the byte limit"
+    },
+    {
+      "code": 6003,
+      "name": "TimestampOverflow",
+      "msg": "Refund deadline overflowed"
+    },
+    {
+      "code": 6004,
+      "name": "Unauthorized",
+      "msg": "Only the giveaway organizer may declare the winner"
+    },
+    {
+      "code": 6005,
+      "name": "InvalidGiveawayStatus",
+      "msg": "Giveaway must be funded before declaring a winner"
+    },
+    {
+      "code": 6006,
+      "name": "GiveawayNotEnded",
+      "msg": "The giveaway has not ended"
+    },
+    {
+      "code": 6007,
+      "name": "WinnerDeclarationClosed",
+      "msg": "The winner declaration window has closed"
+    },
+    {
+      "code": 6008,
+      "name": "InvalidWinner",
+      "msg": "Winner must not be the default public key"
+    },
+    {
+      "code": 6009,
+      "name": "InvalidPaymentStatus",
+      "msg": "Giveaway must have a declared winner before payment"
+    },
+    {
+      "code": 6010,
+      "name": "WinnerAccountMismatch",
+      "msg": "The provided winner account does not match the recorded winner"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidRefundStatus",
+      "msg": "Giveaway must be funded to refund"
+    },
+    {
+      "code": 6012,
+      "name": "RefundNotAvailable",
+      "msg": "The refund deadline has not been reached"
+    },
+    {
+      "code": 6013,
+      "name": "RefundOrganizerMismatch",
+      "msg": "The refund destination must be the recorded organizer"
+    }
+  ],
+  "types": [
+    {
+      "name": "Giveaway",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "organizer",
+            "type": "pubkey"
+          },
+          {
+            "name": "giveaway_id",
+            "type": "u64"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "prize_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "end_at",
+            "type": "i64"
+          },
+          {
+            "name": "refund_after",
+            "type": "i64"
+          },
+          {
+            "name": "status",
+            "type": {
+              "defined": {
+                "name": "GiveawayStatus"
+              }
+            }
+          },
+          {
+            "name": "winner",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "paid_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "giveaway_bump",
+            "type": "u8"
+          },
+          {
+            "name": "vault_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GiveawayStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Funded"
+          },
+          {
+            "name": "WinnerDeclared"
+          },
+          {
+            "name": "Paid"
+          },
+          {
+            "name": "Refunded"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "GIVEAWAY_SEED",
+      "type": "bytes",
+      "value": "[103, 105, 118, 101, 97, 119, 97, 121]"
+    },
+    {
+      "name": "VAULT_SEED",
+      "type": "bytes",
+      "value": "[118, 97, 117, 108, 116]"
+    }
+  ]
+}
