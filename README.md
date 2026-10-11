@@ -19,7 +19,7 @@ Status values: `Funded` → `WinnerDeclared` → `Paid`, or `Refunded`.
 **Important:** winner selection is handled by the organizer. This project proves that the prize was locked and paid out. It does not verify how the winner was chosen.
 
 ## Live on Devnet
-
+- Live verify page: https://solana-giveaway-verifier.vercel.app/verify (try giveaway ID `1791672139904`)
 - Program ID: `4jeVmPQfu7r4RvSoPRdR8AGfToAQk8DHPFz1LsnZuKPm`
 - [View program on Solana Explorer](https://explorer.solana.com/address/4jeVmPQfu7r4RvSoPRdR8AGfToAQk8DHPFz1LsnZuKPm?cluster=devnet)
 
