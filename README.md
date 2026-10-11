@@ -19,7 +19,9 @@ Status values: `Funded` → `WinnerDeclared` → `Paid`, or `Refunded`.
 **Important:** winner selection is handled by the organizer. This project proves that the prize was locked and paid out. It does not verify how the winner was chosen.
 
 ## Live on Devnet
-- Live verify page: https://solana-giveaway-verifier.vercel.app/verify (try giveaway ID `1791672139904`)
+
+- Live organizer page (create, declare, pay): https://solana-giveaway-verifier.vercel.app/manage (needs Solflare set to Devnet, with Devnet SOL)
+- Live verify page (no wallet needed): https://solana-giveaway-verifier.vercel.app/verify (try giveaway ID `1791672139904`)
 - Program ID: `4jeVmPQfu7r4RvSoPRdR8AGfToAQk8DHPFz1LsnZuKPm`
 - [View program on Solana Explorer](https://explorer.solana.com/address/4jeVmPQfu7r4RvSoPRdR8AGfToAQk8DHPFz1LsnZuKPm?cluster=devnet)
 
@@ -50,7 +52,7 @@ PDAs: `giveaway = ["giveaway", giveaway_id (u64, little-endian)]`, `vault = ["va
 ## Repository layout
 
 - `solana-giveaway-verifier/`: the Anchor program
-- `frontend/`: Next.js app, including the wallet-free `/verify` page and the CLI scripts
+- `frontend/`: Next.js app with the organizer page (`/manage`), the wallet-free verify page (`/verify`), and CLI scripts used for early testing
 - `src/`, `test/`, `script/`, `lib/`, `foundry.toml`: an earlier Ethereum donation prototype, kept as the baseline from the repo's first commit. It is not part of this submission.
 
 ## Run it
@@ -71,9 +73,9 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:3000/verify`, enter a giveaway ID, and click Verify.
+Open `http://localhost:3000/manage` to create and manage a giveaway (connect Solflare on Devnet), or `http://localhost:3000/verify` to look one up by ID.
 
-CLI scripts (run from `frontend/`, using a Devnet-funded wallet at `~/.config/solana/id.json`):
+CLI scripts used for early testing (run from `frontend/`, using a Devnet-funded wallet at `~/.config/solana/id.json`):
 
 ```
 node cli-create-giveaway.mjs        # creates a 0.1 SOL giveaway ending in 3 minutes
@@ -83,11 +85,11 @@ node cli-declare-pay.mjs <GIVEAWAY_ID>   # declares a winner and pays them
 ## Current status and limitations
 
 - Devnet only. The program has not been audited.
-- The browser create form needs Solflare set to Devnet. Declare winner and pay winner currently run through the CLI scripts, and the refund instruction is not yet in the UI.
+- The organizer page needs Solflare set to Devnet with Devnet SOL. Create, declare winner, and pay winner are tested end to end from the browser. Cancel and refund is in the UI but not yet tested end to end.
 - The organizer chooses the winner. Verifiable winner selection is future work.
 
 ## Roadmap
 
-- Organizer dashboard in the UI for declare, pay, and refund
+- Full end-to-end testing of the refund flow, and a dashboard listing all giveaways
 - Verifiable, on-chain winner selection
 - Mainnet deployment after an audit
