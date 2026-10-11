@@ -30,7 +30,7 @@ type Result = {
 };
 
 export default function VerifyPage() {
-  const [id, setId] = useState("1791672139904");
+  const [id, setId] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<Result | null>(null);
@@ -132,6 +132,7 @@ export default function VerifyPage() {
           value={id}
           onChange={(e) => setId(e.target.value)}
           placeholder="Giveaway ID"
+          autoComplete="off"
           className="flex-1 rounded border border-white/20 bg-transparent p-2"
         />
         <button
