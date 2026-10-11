@@ -124,11 +124,10 @@ export default function ManagePage() {
     const id = new BN(Date.now().toString());
     const idStr = id.toString();
     const endAt = new BN(Math.floor(Date.now() / 1000) + Math.round(mins * 60));
-    setGiveawayId(idStr);
     setInfo(null);
     run("Create and fund", idStr, async () => {
       const { giveaway, vault } = pdas(id);
-      return program.methods
+      const created = await program.methods
         .createAndFund(id, title.trim(), lamports, endAt)
         .accountsPartial({
           organizer: wallet!.publicKey,
@@ -137,6 +136,8 @@ export default function ManagePage() {
           systemProgram: SystemProgram.programId,
         })
         .rpc();
+      setGiveawayId(idStr);
+      return created;
     });
   }
 
